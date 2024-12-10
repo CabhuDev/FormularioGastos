@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recogida de Gastos</title>
+    <link rel="stylesheet" href="/frontend/css/style.css"/>
+</head>
+<body>
+    <form class="form-container" method="post" action="/gastos/add">
+        <label for="descripcion">Descripción:</label>
+        <input type="text" id="descripcion" name="descripcion" class="form-input"><br><br>
+        
+        <label for="importe">Importe:</label>
+        <input type="number" id="importe" name="importe" step="0.01" class="form-input"><br><br>
+        
+        <label for="fecha_gasto">Fecha de Gasto:</label>
+        <input type="date" id="fecha_gasto" name="fecha_gasto" class="form-input"><br><br>
+        
+        <label for="unidades">Unidades:</label>
+        <input type="number" id="unidades" name="unidades" class="form-input"><br><br>
+
+        <label for="categoria">Categoría:</label>
+        <select id="categoria" name="categoria" class="form-input">
+            <option value="Seguros">Seguros</option>
+            <option value="IBI">IBI</option>
+            <option value="Comunidad">Comunidad</option>
+            <option value="Intereses">Intereses</option>
+            <option value="Consumibles">Consumibles</option>
+        </select><br><br>
+        
+        <button type="submit">Enviar</button>        
+    </form>
+
+
+
+    {% if mensaje %}
+    <div class="alert {% if tipo_mensaje == 'success' %}alert-success{% else %}alert-error{% endif %}">
+        {{ mensaje }}
+    </div>
+    {% endif %}
+
+    <!-- SUMATORIOS -->
+    <button id="sumatoriosBtn" onclick="cargarSumatorios()" >Mostrar Sumatorios por Categorías</button>
+    <div id="sumatorios">
+        <!-- Aquí se cargarán los sumatorios dinámicamente -->
+    </div>
+
+    <!-- TABLA COMPLETA -->    
+    <button id="mostrarDatosBtn" onclick="mostrarDatos()" >Mostrar Datos</button>
+    <h1>Lista de Gastos</h1>
+    <table id="tablaGastos">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Unidades</th>
+                <th>Fecha de Gasto</th>
+                <th>Importe</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se agregarán las filas dinámicamente -->
+        </tbody>
+    </table>
+
+    <!-- Botón para mostrar la alerta -->
+    <button id="alertButton">Mostrar Alerta</button>
+
+    
+
+
+    
+    <script src="/frontend/js/main.js"></script>
+</body>
+</html>
